@@ -97,7 +97,7 @@ spec:
     spec:  
        containers:  
         - name: frontend-container 
-          image: image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient:13
+          image: image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient:14
           imagePullPolicy: Always
           ports:
           - containerPort: 3000

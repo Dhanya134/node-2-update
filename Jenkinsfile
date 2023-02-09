@@ -27,7 +27,7 @@ pipeline {
         sh "cat ./dev/front.yaml"
         sh "git add ."
         sh "git commit -m 'done by jenkins job node-app-update-deployment-pipeline-back' "
-        sh  'git push https://$user:$encodedPass@github.com/$user/node-2-update.git HEAD:new'
+        sh  'git push https://$user:$encodedPass@github.com/$user/node-2-update.git HEAD:branch'
             }
         }
         }

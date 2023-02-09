@@ -32,5 +32,18 @@ pipeline {
             }
         }
         }
+        stage('deploy') {
+        steps {
+            script {
+                openshift.withCluster() {
+                    openshift.withProject("$PROJECT_NAME") {
+                        echo "Using project: ${openshift.project()}"
+                         sh 'oc project "$PROJECT_NAME" '
+                         sh 'oc apply -f dev/front.yaml'
+                    }
+                }
+            }
+        } 
+    }
         }
 }

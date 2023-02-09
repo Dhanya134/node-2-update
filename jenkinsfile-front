@@ -21,10 +21,10 @@ pipeline {
 
         sh "git config user.email dhanyashree@persistent.com"
         sh "git config user.name Dhanya134"
-        sh "cat ./dev/backend.yaml"
-        echo "${DOCKER_TAG}"
-        sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient.*+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient:${DOCKER_TAG}+g' ./dev/backend.yaml"
-        sh "cat ./dev/backend.yaml"
+        sh "cat ./dev/deploy.yaml"
+        echo "${DOCKERTAG}"
+        sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient.*+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient:${DOCKERTAG}+g' ./dev/deploy.yaml"
+        sh "cat ./dev/deploy.yaml"
         sh "git add ."
         sh "git commit -m 'done by jenkins job node-app-update-deployment-pipeline-front' "
         sh  'git push https://$user:$encodedPass@github.com/$user/node-2-update.git HEAD:branch'

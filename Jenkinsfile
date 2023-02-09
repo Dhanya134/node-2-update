@@ -27,9 +27,6 @@ pipeline {
         sh "cat ./dev/backend.yaml"
         sh "git add ."
         sh "git commit -m 'done by jenkins job node-app-update-deployment-pipeline-back' "
-        sh "git checkout branch"
-        sh "git fetch origin"
-        sh "git merge origin/branch"
         sh  'git push https://$user:$encodedPass@github.com/$user/node-2-update.git HEAD:branch'
             }
         }

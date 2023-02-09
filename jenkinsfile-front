@@ -28,7 +28,7 @@ pipeline {
         sh "git add ."
         sh "git commit -m 'done by jenkins job node-app-update-deployment-pipeline-front' "
         sh  'git push https://$user:$encodedPass@github.com/$user/node-2-update.git HEAD:new'
-            }
+           }
         }
         }
         }

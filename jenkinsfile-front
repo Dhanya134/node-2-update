@@ -1,0 +1,35 @@
+pipeline {
+    
+    agent any
+    stages {
+        stage("Checkout") {
+            steps {
+
+               checkout scm
+        }
+            
+            
+    }
+        
+        stage("update git"){
+        steps{
+            withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                  script {
+                        env.encodedPass=URLEncoder.encode(pass, "UTF-8")
+                    }
+    
+
+        sh "git config user.email dhanyashree@persistent.com"
+        sh "git config user.name Dhanya134"
+        sh "cat ./dev/backend.yaml"
+        echo "${DOCKER_TAG}"
+        sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient.*+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient:${DOCKER_TAG}+g' ./dev/backend.yaml"
+        sh "cat ./dev/backend.yaml"
+        sh "git add ."
+        sh "git commit -m 'done by jenkins job node-app-update-deployment-pipeline-front' "
+        sh  'git push https://$user:$encodedPass@github.com/$user/node-2-update.git HEAD:branch'
+            }
+        }
+        }
+        }
+}

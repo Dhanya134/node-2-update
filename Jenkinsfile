@@ -17,16 +17,16 @@ pipeline {
                   script {
                         env.encodedPass=URLEncoder.encode(pass, "UTF-8")
                     }
-    // some block
+    
 
         sh "git config user.email dhanyashree@persistent.com"
         sh "git config user.name Dhanya134"
-        sh "cat ./dev/deployment.yaml"
+        sh "cat ./dev/backend.yaml"
         echo "${DOCKERTAG}"
-        sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitserver.*+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitserver:${DOCKERTAG}+g' ./dev/deployment.yaml"
-        sh "cat ./dev/deployment.yaml"
+        sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitserver.*+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitserver:${DOCKERTAG}+g' ./dev/backend.yaml"
+        sh "cat ./dev/backend.yaml"
         sh "git add ."
-        sh "git commit -m 'done by jenkins job node-app-update-deployment-pipeline' "
+        sh "git commit -m 'done by jenkins job node-app-update-deployment-pipeline-back' "
         sh  'git push https://$user:$encodedPass@github.com/$user/node-2-update.git HEAD:branch'
             }
         }

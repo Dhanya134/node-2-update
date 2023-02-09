@@ -24,6 +24,7 @@ pipeline {
         sh "cat ./dev/front.yaml"
         echo "${DOCKERTAG}"
         sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitserver.*+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitserver:${DOCKERTAG}+g' ./dev/front.yaml"
+        sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient.*+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitclient:${DOCKERTAG}+g' ./dev/front.yaml"       
         sh "cat ./dev/front.yaml"
         sh "git add ."
         sh "git commit -m 'done by jenkins job node-app-update-deployment-pipeline-back' "

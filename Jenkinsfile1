@@ -10,7 +10,7 @@ stage('deploy') {
                     openshift.withProject("$PROJECT_NAME") {
                         echo "Using project: ${openshift.project()}"
                          sh 'oc project "$PROJECT_NAME" '
-                         sh 'oc apply -f front.yaml'
+                         sh 'oc apply -f dev/front.yaml'
                     }
                 }
             }

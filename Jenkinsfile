@@ -19,8 +19,8 @@ pipeline {
                     }
     
 
-        sh "git config user.email dhanyashree@persistent.com"
-        sh "git config user.name Dhanya134"
+        sh 'git config user.email "${GITHUB_EMAIL}"'
+        sh 'git config user.name "${GITHUB_USERNAME}"'
         sh "cat ./dev/front.yaml"
         echo "${DOCKERTAG}"
         sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitserver.*+image-registry.openshift-image-registry.svc:5000/dhanya-jenkins/node-gitserver:${DOCKERTAG}+g' ./dev/front.yaml"
